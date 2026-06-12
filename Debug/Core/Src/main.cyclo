@@ -1,0 +1,5 @@
+../Core/Src/main.c:70:5:main	3
+../Core/Src/main.c:137:6:SystemClock_Config	3
+../Core/Src/main.c:175:9:is_debounced	2
+../Core/Src/main.c:183:6:HAL_GPIO_EXTI_Callback	18
+../Core/Src/main.c:231:6:Error_Handler	1

@@ -199,7 +199,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	case GPIO_PIN_6:
 		if(is_debounced(&time_PC6)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6)==GPIO_PIN_SET)
 		{
-			if(mode==3)
+			if(mode==2)
 			{
 				mode=0;
 			}else mode++;
@@ -209,30 +209,30 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		if(is_debounced(&time_PC8)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_8)==GPIO_PIN_SET)
 		{
 			if(mode==0){
-					mode=3;
+					mode=2;
 			}else mode--;
 		}
 		break;
 	case GPIO_PIN_11:
 		if(is_debounced(&time_PC11)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_11)==GPIO_PIN_SET)
 		{
-			mode=3;
+			if(speed>=400) speed-=200;
+
 		}
 		break;
 	case GPIO_PIN_9:
 		if(is_debounced(&time_PC9)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9)==GPIO_PIN_SET)
 		{
-			if(speed==1000){
-				speed=200;
-			}else speed+=200;
+			if(speed<=1000) speed+=200;
 		}
 		break;
 	case GPIO_PIN_15:
 		if(is_debounced(&time_PA15)&& HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_15)==GPIO_PIN_SET)
 		{
-			if(speed==200){
-				speed=1000;
-			}else speed-=200;
+			if(mode!=3){
+			mode=3;
+			}else
+				mode=0;
 		}
 		break;
 	default:

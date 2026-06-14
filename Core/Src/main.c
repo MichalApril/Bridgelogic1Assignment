@@ -137,6 +137,7 @@ int main(void)
 		  break;
 
 	  default:
+		  HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_15|GPIO_PIN_14|GPIO_PIN_13|GPIO_PIN_12), GPIO_PIN_RESET);
 		  break;
 	  }
 
@@ -196,7 +197,7 @@ uint8_t is_debounced(volatile uint32_t *last_tick){
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	switch(GPIO_Pin){
-	case GPIO_PIN_6:
+	case GPIO_PIN_6://SWT4
 		if(is_debounced(&time_PC6)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_6)==GPIO_PIN_SET)
 		{
 			if(mode==2)
@@ -205,7 +206,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 			}else mode++;
 		}
 		break;
-	case GPIO_PIN_8:
+	case GPIO_PIN_8://SWT5
 		if(is_debounced(&time_PC8)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_8)==GPIO_PIN_SET)
 		{
 			if(mode==0){
@@ -213,20 +214,20 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 			}else mode--;
 		}
 		break;
-	case GPIO_PIN_11:
+	case GPIO_PIN_11://SWT3
 		if(is_debounced(&time_PC11)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_11)==GPIO_PIN_SET)
 		{
 			if(speed>=400) speed-=200;
 
 		}
 		break;
-	case GPIO_PIN_9:
+	case GPIO_PIN_9://SWT1
 		if(is_debounced(&time_PC9)&& HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_9)==GPIO_PIN_SET)
 		{
 			if(speed<=1000) speed+=200;
 		}
 		break;
-	case GPIO_PIN_15:
+	case GPIO_PIN_15://SWT2
 		if(is_debounced(&time_PA15)&& HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_15)==GPIO_PIN_SET)
 		{
 			if(mode!=3){
@@ -236,6 +237,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		}
 		break;
 	default:
+		 HAL_GPIO_WritePin(GPIOD, (GPIO_PIN_15|GPIO_PIN_14|GPIO_PIN_13|GPIO_PIN_12), GPIO_PIN_RESET);
+
 		break;
 	}
 

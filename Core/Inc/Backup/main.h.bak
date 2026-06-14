@@ -79,6 +79,7 @@ void Error_Handler(void);
 #define SW1_EXTI_IRQn EXTI15_10_IRQn
 #define SW0_Pin GPIO_PIN_11
 #define SW0_GPIO_Port GPIOC
+#define SW0_EXTI_IRQn EXTI15_10_IRQn
 
 /* USER CODE BEGIN Private defines */
 
